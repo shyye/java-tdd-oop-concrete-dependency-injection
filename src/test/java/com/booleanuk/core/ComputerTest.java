@@ -9,7 +9,10 @@ class ComputerTest {
     @Test
     public void shouldTurnOn() {
         PowerSupply myPsu = new PowerSupply();
-        Computer myPc = new Computer(myPsu);
+        // TODO:
+        //  Is it right to initialize the class like this?
+        //  Or can we pass in a class without initialize it?
+        Computer myPc = new Computer(myPsu, new Game());
         myPc.turnOn();
 
         Assertions.assertTrue(myPsu.isOn);
@@ -18,7 +21,7 @@ class ComputerTest {
     @Test
     public void shouldInstallGames() {
         PowerSupply myPsu = new PowerSupply();
-        Computer myPc = new Computer(myPsu);
+        Computer myPc = new Computer(myPsu, new Game());
 
         myPc.installGame("Final Fantasy XI");
 
@@ -29,7 +32,7 @@ class ComputerTest {
     @Test
     public void shouldPlayGames() {
         PowerSupply myPsu = new PowerSupply();
-        Computer myPc = new Computer(myPsu);
+        Computer myPc = new Computer(myPsu, new Game());
 
         myPc.installGame("Duck Game");
         myPc.installGame("Dragon's Dogma: Dark Arisen");
@@ -47,7 +50,7 @@ class ComputerTest {
             add(new Game("Baldur's Gate"));
         }};
 
-        Computer myPc = new Computer(myPsu, preInstalled);
+        Computer myPc = new Computer(myPsu, preInstalled, new Game());
 
         Assertions.assertEquals(2, myPc.installedGames.size());
         Assertions.assertEquals("Dwarf Fortress", myPc.installedGames.get(0).name);
